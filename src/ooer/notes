@@ -1,0 +1,17 @@
+abstraction
+hides unneeded info, which allows users to implement without understanding backend complexities
+
+encapsualtion
+wrapping data and code together into a single unit, providing a single interface
+
+inheritance
+
+polymorphism
+
+association
+    - aggregation
+        weaker form of composition where an obj can live even if it's container class is deleted
+        i.e. obj being aggregated is instantiated outside of the container obj
+    - composition
+        instantiation an obj from within so when the container obj is deleted, so does the composed
+        object
