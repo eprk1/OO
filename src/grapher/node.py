@@ -14,9 +14,19 @@ def traverse(node: Node) -> None:
         traverse(neighbor)
 
 
+def dfs(visited, graph, node):
+    if node not in visited:
+        print(node)
+        visited.add(node)
+        for n in graph[node]:
+            dfs(visited, graph, n)
+
+
 one = Node(val=1)
 two = Node(val=2)
 three = Node(val=3)
 one.neighbors = [two, three]
+
+graph = {"1": ["2", "3"], "2": [], "3": []}
 
 traverse(one)

@@ -184,7 +184,8 @@ class Waiter:
             builder.add_sauce,
             builder.add_topping,
             builder.bake,
-        ) [step() for step in steps]
+        )
+        [step() for step in steps]
 
     @property
     def pizza(self):
@@ -194,8 +195,8 @@ class Waiter:
 def main():
     builders = dict(m=MargaritaBuilder, c=CreamyBaconBuilder)
 
-    builder_key = 'c'
-    builder_key = 'm'
+    builder_key = "c"
+    builder_key = "m"
     builder = builders[builder_key]()
 
     waiter = Waiter()
@@ -203,5 +204,6 @@ def main():
     pizza = waiter.pizza
 
 
-
 # fluent builder
+
+main()
