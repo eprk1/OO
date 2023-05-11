@@ -28,5 +28,6 @@ three = Node(val=3)
 one.neighbors = [two, three]
 
 graph = {"1": ["2", "3"], "2": [], "3": []}
+dfs(set(), graph, "1")
 
-traverse(one)
+# traverse(one)
