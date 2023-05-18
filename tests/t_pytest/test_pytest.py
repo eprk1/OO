@@ -14,17 +14,10 @@ pytest-mock
 import pytest
 import sys
 
-from foo import dummy_func
-
 
 def test_function_with_scenario_one():
     print("Testing function with scenario one")
     assert 1 + 1 == 2, f"Check addition value {1 + 1} does not match {2}"
-
-
-def test_mocking_fucntion(mocker):
-    mocker.patch(dummy_func, return_value=2)
-    assert dummy_func() == 2
 
 
 ### Parameters
@@ -56,3 +49,18 @@ def test_fail():
 @pytest.mark.group1
 def test_sample():
     print("test sample")
+
+
+import os
+
+
+class UnixFS:
+    @staticmethod
+    def rm(filename):
+        os.remove(filename)
+
+
+def test_unix_fs(mocker):
+    mocker.patch("os.remove")
+    UnixFS.rm("file")
+    os.remove.assert_called_once_with("file")
