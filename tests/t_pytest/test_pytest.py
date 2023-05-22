@@ -51,6 +51,7 @@ def test_sample():
     print("test sample")
 
 
+# Mock
 import os
 
 
@@ -64,3 +65,63 @@ def test_unix_fs(mocker):
     mocker.patch("os.remove")
     UnixFS.rm("file")
     os.remove.assert_called_once_with("file")
+
+
+# Spy
+# The mocker.spy object acts exactly like the original method in all cases, except
+# the spy also tracks function/method calls, return values and exceptions raised.
+# spy_exception
+# unlike patch,
+# spy acts exactly like the original method in all cases, except
+# the spy also tracks function/method calls, return values and exceptions raised.
+def test_spy_method(mocker):
+    class Foo(object):
+        def bar(self, v):
+            return v * 2
+
+    foo = Foo()
+    spy = mocker.spy(foo, "bar")
+    assert foo.bar(21) == 42
+
+    spy.assert_called_once_with(21)
+    assert spy.spy_return == 42
+
+
+class Summ:
+    @staticmethod
+    def myfunction():
+        return 42
+
+
+def test_spy_function(mocker):
+    spy = mocker.spy(Summ, "myfunction")
+    assert Summ.myfunction() == 42
+    assert spy.call_count == 1
+
+
+# Stops Spying
+def test_with_unspy(mocker):
+    class Foo:
+        def bar(self):
+            return 42
+
+    spy = mocker.spy(Foo, "bar")
+    foo = Foo()
+    assert foo.bar() == 42
+    assert spy.call_count == 1
+    mocker.stop(spy)
+    assert foo.bar() == 42
+
+    # call_count did not increase after stop()
+    assert spy.call_count == 1
+
+
+# Stub
+# it accepts any args and is useful to test callbacks
+def test_stub(mocker):
+    def foo(on_something):
+        on_something("foo", "bar")
+
+    stub = mocker.stub(name="on_something_stub")
+    foo(stub)
+    stub.assert_called_once_with("foo", "bar")
