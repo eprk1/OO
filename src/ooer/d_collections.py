@@ -22,3 +22,7 @@ print(cm)
 
 pylookup = ChainMap(locals(), globals(), vars(builtins))
 print(pylookup)
+
+
+# Counter
+print(Counter("abracadabra").most_common(3))
