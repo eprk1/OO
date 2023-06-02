@@ -26,3 +26,22 @@ print(pylookup)
 
 # Counter
 print(Counter("abracadabra").most_common(3))
+
+
+#deque
+# append/pop from either side of the deque are O(1)
+d = deque('ghi')
+for e in d:
+    print(e.upper())
+
+d.append('j')
+d.appendleft('f')
+print(d.pop())
+print(d.popleft())
+
+d.extend('jkl')
+d.extendleft('abc')
+d.rotate(1)
+d.rotate(-1)
+d.clear()
+
